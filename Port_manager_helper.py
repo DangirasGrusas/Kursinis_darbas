@@ -7,7 +7,7 @@ import random
 class Worker:
     def __init__(self, worker_id, full_name, field, activity, imo_number=0):
         self.worker_id = worker_id
-        self.__full_name = full_name
+        self.__full_name = full_name  # Making full_name private
         self.field = field
         self.activity = activity
         self.imo_number = imo_number
@@ -16,6 +16,7 @@ class Worker:
         return (f"ID: {self.worker_id}, {self.get_full_name()} "
             "is performing assigned task.")
 
+    # Getter method to access private full_name attribute
     def get_full_name(self):
         return self.__full_name
 
@@ -114,13 +115,13 @@ def update_activity_in_csv(worker):
 def submit():
     selection = ship_entry.get()
     imo = imo_entry.get()
-    
     if not imo.isdigit() or len(imo) < 7 or len(imo) > 8:
         messagebox.showerror("Error",
             "Invalid IMO number. Please enter a 7 or 8-digit numerical value.")
         return False
 
     if selection == "1":
+        # Ship submission process
         if is_imo_in_port(imo):
             messagebox.showerror("Error",
                 "IMO number already exists in the port.")
@@ -147,14 +148,10 @@ def submit():
         return True
 
     elif selection == "2":
+        # Ship leaving process
         if not is_imo_in_port(imo):
             messagebox.showerror("Error", "No such ship is in the port.")
             return False
-        
-        docked_ships = pd.read_csv("Docked_ships.csv")
-        if docked_ships.empty:
-            return False
-
         update_workers_activity_to_free(imo)
         remove_imo_number(imo)
         messagebox.showinfo("Success",
@@ -178,8 +175,8 @@ def remove_imo_number(imo_number):
     df.to_csv(csv_file_path, index=False)
 
 def is_imo_in_port(imo_number):
-    if os.path.exists("Docked_ships.csv"):
-        return True
+    if not os.path.exists("Docked_ships.csv"):
+        return False
     df = pd.read_csv("Docked_ships.csv")
     return str(imo_number) in df['IMO Number'].astype(str).values
 
