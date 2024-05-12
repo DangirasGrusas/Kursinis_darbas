@@ -1,0 +1,30 @@
+Python Coursework report
+Dangiras Grušas Ef-23/1
+Vilnius „TECH“
+***
+Introduction
+***
+The application, created for the programming coursework assignment “Port_manager_helper.py“ is a port manager helper tool, designed to ensure smooth operations in a cargo port. “Port_manager_helper“ helps port managers assign workers to unload or load incoming cargo ships.
+The program runs simply: first, in the csv document “Worker_list.csv” you need make a list of workers. After that when the program “Port_manager_helper.py” is opened, a window appears, asking you to input if the ship, that you want to assign/unassign workers to/from is leaving or incoming. You do that by either typing 1-ship is coming or 2-ship is leaving in the first dialogue box. After that you are required to input the ship’s IMO number, which contains seven or eight numbers. When you do that, type in 1 in the first dialogue box and press submit button, a worker list, that was assigned to the ship is shown and these worker’s activity is set to ‘busy’, so that they can not be assigned to two ships at the same time. When you type 2 in the first box the worker’s activity is set to ‘free’.
+***
+Body/Analysis
+***
+This is evident in the code through method overriding in subclasses such as ‘CraneOperator’, ‘TrailerDriver’, ‘TowingBoatCaptain’, and ‘GuideBoatCaptain’. Each of these subclasses has its own implementation of the ‘assign_task’ method, which is a form of polymorphism.
+***
+Abstraction is achieved by hiding the internal implementation details of the ‘Worker’ class and its subclasses from the outside. For example, the ‘Worker’ class abstracts away the details of a generic worker, while subclasses like ‘CraneOperator’ provide specific implementations.
+*** 
+Inheritance is utilized with the subclasses inheriting from the ‘Worker’ class. Each subclass inherits the attributes and methods of the ‘Worker’ class.
+Encapsulation is achieved by making the ‘__full_name‘ attribute private in the ‘Worker’ class using the double underscore prefix. This prevents direct access to the attribute from outside the class. 
+***
+Regarding design patterns, the code utilizes the Factory Method pattern with the ‘WorkerFactory’ class. This pattern encapsulates the object creation logic and allows subclasses to alter the type of objects that will be created. It's suitable for the program because it centralizes the creation of different types of workers based on their roles.
+For file handling, the program imports and exports data using CSV files (‘pd.read_csv’ and ‘to_csv’).
+Unit testing was successfully implemented to cover the core functionality of the code.
+***
+Results and summary
+***	
+Overall, the four pillars of object-oriented programming and incorporated a design pattern were incorporated successfully.
+The product that was envisioned at the beginning of the project was successfully created, meeting the required criteria. 
+There were some obstacles faced, however, for example, writing and reading from a file and creating a simple interface, because personal knowledge of these topics was very limited or non-existent before the project.
+***
+During this work, my knowledge of different design patterns, ‘pandas’ library and overall objective programming was broadened and a program that could be used in real life scenarios was created. 
+In the future it would be possible to improve the program by implementing more functionalities to it, for example, the program could be improved to help conduct security checks of incoming containers. Other potential additions include: a container storage system, equipment tracking system, a system that would help distribute containers on land and many more improvements.
